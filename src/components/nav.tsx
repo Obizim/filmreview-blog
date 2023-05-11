@@ -7,7 +7,7 @@ export const Nav = () => {
 
     return <header>
         <nav className="flex justify-between items-center pt-6 px-4 mx-auto max-w-screen-lg border-b border-b-gray-600">
-        <Link href="/"><h1 className="self-center text-2xl font-semibold whitespace-nowrap">CFR__</h1></Link>
+        <Link href="/"><h1 className="self-center text-2xl font-semibold whitespace-nowrap">CF__</h1></Link>
             <ul className={`flex justify-between items-center p-6 space-x-6`}>
                 <FiSearch className="cursor-pointer" onClick={() => setToggle(!toggle)} />
                 <Link href="/about"><li>About us</li></Link>
