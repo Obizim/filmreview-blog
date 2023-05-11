@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FiCalendar } from 'react-icons/fi'
 
 const data = [
@@ -37,7 +38,7 @@ const data = [
 export const Card = () => {
   return (
     <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((post ) => <div className="py-6 px-4 border border-gray-600 rounded-lg">
+        {data.map((post ) => <Link href={`/review/${post.id}`}><div className="py-6 px-4 border border-gray-600 rounded-lg">
         <header className="flex font-light text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24" stroke="#b91c1c">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
@@ -55,7 +56,7 @@ export const Card = () => {
         </p>
 
         <div className='flex items-center justify-end pt-4'><FiCalendar /> <span>May 6 2021</span></div>
-      </div>)}
+      </div></Link>)}
   
     </div>
   );
