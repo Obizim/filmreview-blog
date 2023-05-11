@@ -14,7 +14,7 @@ export const Nav = () => {
             </ul>
         </nav>
 
-        <div className={`relative mt-3 mx-auto max-w-screen-lg px-2 ${toggle ? 'block' : 'hidden'}`}>
+        <div className={`relative my-3 mx-auto max-w-screen-lg px-2 ${toggle ? 'block' : 'hidden'}`}>
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <FiSearch className="w-5 h-5 text-gray-500" />
         </div>
