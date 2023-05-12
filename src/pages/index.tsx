@@ -1,13 +1,11 @@
 import { Card } from "@/components/cards";
-import client from "../../client";
+import { fetch } from "@/util/util";
 
 type postsProps = {
   posts: []
 }
 
 export default function Home({posts}: postsProps) {
-  console.log(posts);
-  
   return (
     <main className="mx-auto px-4 max-w-screen-lg">
       <div className="text-center pt-6">
@@ -23,7 +21,7 @@ export default function Home({posts}: postsProps) {
 }
 
 export const getStaticProps = async () =>{
-  const posts = await client.fetch(`*[_type == "post"]{_id, title, publishedAt, "slug": slug.current, body, "categories": categories[]->title}`)
+  const posts = await fetch()
   if(!posts || !posts.length) {
     return {
       props: {posts: []}
