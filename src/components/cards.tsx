@@ -34,20 +34,29 @@ const data = [
       }
 ]
 
+type postProps = {
+  posts: {
+    _id: string,
+    publishedAt: string,
+    title: string,
+    slug: string,
+    categories: string[]
+  }[]
+}
 
-export const Card = () => {
+export const Card = ({posts}: postProps) => {
   return (
     <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((post ) => <Link key={post.id} href={`/post/${post.id}`}><div className="py-6 px-4 border border-gray-600 rounded-lg">
+        {posts.map((post ) => <Link key={post._id} href={`/post/${post._id}`}><div className="py-6 px-4 border border-gray-600 rounded-lg">
         <header className="flex font-light text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24" stroke="#b91c1c">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
           </svg>
-          <p className="uppercase">Tv series</p>
+          {post.categories.map((category, i) => <p key={i} className="uppercase">{category}</p>)}
         </header>
 
-        <h2 className="font-bold text-3xl mt-2">
-          Rapid Event Notification System at Netflix
+        <h2 className="font-bold text-3xl mt-2 capitalize">
+          {post.title}
         </h2>
         <p className="font-light pt-4 truncate">
           Netflix has more than 220 million active members who perform a variety

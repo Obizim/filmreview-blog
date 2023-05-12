@@ -2,11 +2,12 @@ import { Card } from "@/components/cards";
 import client from "../../client";
 
 type postsProps = {
-  posts: {}[]
+  posts: []
 }
 
 export default function Home({posts}: postsProps) {
-  console.log(posts)
+  console.log(posts);
+  
   return (
     <main className="mx-auto px-4 max-w-screen-lg">
       <div className="text-center pt-6">
@@ -15,14 +16,14 @@ export default function Home({posts}: postsProps) {
       </div>
       <div>
       <h2 className="font-semi-bold text-2xl pt-8 border-b border-gray-600 max-w-max">Recent Stories</h2>
-      <Card />
+      <Card posts={posts} />
       </div>
     </main>
   )
 }
 
 export const getStaticProps = async () =>{
-  const posts: [] = await client.fetch(`*[_type == "post"]`)
+  const posts = await client.fetch(`*[_type == "post"]{_id, title, publishedAt, "slug": slug.current, body, "categories": categories[]->title}`)
   if(!posts || !posts.length) {
     return {
       props: {posts: []}
