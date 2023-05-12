@@ -1,45 +1,40 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { FiCalendar } from 'react-icons/fi'
+import { PortableText } from "@portabletext/react";
+import imageUrlBuilder from "@sanity/image-url";
+import client from '../../client';
 
-const data = [
-    {
-        "id": 1,
-        "title": "Guide to Protecting Your Startup from Legal Risks",
-        "image": "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-      },
-      {
-        "id": 2,
-        "title": "Interview: Getting a job after graduation",
-        "image": "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-      },
-      {
-        "id": 3,
-        "title": "Optimizing your resume",
-        "image": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-      },
-      {
-        "id": 4,
-        "title": "Optimizing your resume",
-        "image": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-      },
-      {
-        "id": 5,
-        "title": "Optimizing your resume",
-        "image": "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-      },
-      {
-        "id": 6,
-        "title": "Optimizing your resume",
-        "image": "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+function urlFor(source: any) {
+  return imageUrlBuilder(client).image(source);
+}
+
+const pt = {
+  types: {
+    image: ({ value }: any) => {
+      if (!value?.asset?._ref) {
+        return null;
       }
-]
-
+      return (
+        <Image
+          alt={value.alt || "A randon work cover"}
+          loading="lazy"
+          src={urlFor(value).auto("format").url()}
+          width={250}
+          height={400}
+          objectFit="cover"
+        />
+      );
+    },
+  },
+};
 type postProps = {
   posts: {
     _id: string,
     publishedAt: string,
     title: string,
     slug: string,
+    body: []
     categories: string[]
   }[]
 }
@@ -58,11 +53,9 @@ export const Card = ({posts}: postProps) => {
         <h2 className="font-bold text-3xl mt-2 capitalize">
           {post.title}
         </h2>
-        <p className="font-light pt-4 truncate">
-          Netflix has more than 220 million active members who perform a variety
-          of actions throughout each session, ranging from renaming a profile to
-          watchi...
-        </p>
+        <section className="leading-loose text-base py-8 font-light pt-4 line-clamp-2">
+            <PortableText value={post.body} components={pt} />
+        </section>
 
         <div className='flex items-center justify-end pt-4'><FiCalendar /> <span>May 6 2021</span></div>
       </div></Link>)}
