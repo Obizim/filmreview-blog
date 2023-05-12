@@ -10,7 +10,8 @@ export const Nav = () => {
         <Link href="/"><h1 className="self-center text-2xl font-semibold whitespace-nowrap">CF__</h1></Link>
             <ul className={`flex justify-between items-center p-6 space-x-6`}>
                 <FiSearch className="cursor-pointer" onClick={() => setToggle(!toggle)} />
-                <Link href="/about"><li>About us</li></Link>
+                <Link href="/posts"><li>Posts</li></Link>
+                <Link href="/about"><li>About</li></Link>
             </ul>
         </nav>
 

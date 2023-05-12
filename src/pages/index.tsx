@@ -1,6 +1,12 @@
 import { Card } from "@/components/cards";
+import client from "../../client";
 
-export default function Home() {
+type postsProps = {
+  posts: {}[]
+}
+
+export default function Home({posts}: postsProps) {
+  console.log(posts)
   return (
     <main className="mx-auto px-4 max-w-screen-lg">
       <div className="text-center pt-6">
@@ -13,4 +19,20 @@ export default function Home() {
       </div>
     </main>
   )
+}
+
+export const getStaticProps = async () =>{
+  const posts: [] = await client.fetch(`*[_type == "post"]`)
+  if(!posts || !posts.length) {
+    return {
+      props: {posts: []}
+    }
+  }else {
+    return {
+      props: {
+        posts,
+        revalidate: 10 
+      }
+    }
+  }
 }
