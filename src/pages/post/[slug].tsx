@@ -1,6 +1,9 @@
 import { FiCalendar } from "react-icons/fi";
+import client from "../../../client";
 
-export default function Review() {
+export default function Review({post}) {
+    console.log(post);
+    
     return <div className="mx-auto px-4 max-w-screen-lg">
         <header>
         <h2 className="font-bold text-3xl mt-4">Rapid Event Notification System at Netflix</h2>
@@ -16,4 +19,24 @@ export default function Review() {
         The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
         </section>
     </div>
+}
+
+export const getStaticPaths = async () => {
+    const post = await client.fetch(
+      `*[_type == "post"]{
+          "slug": slug.current
+    }`)
+    const paths = post.map((slug) => ({ params: slug}))
+    return {
+      paths,
+      fallback: true,
+    }
+  }
+
+export const getStaticProps = async (context) => {
+    const { slug } = context.params
+    const post = await client.fetch(`*[_type == "post" && slug.current == '${slug}']`)
+    return {
+        props: {post}
+    }
 }

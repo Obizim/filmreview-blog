@@ -47,7 +47,7 @@ type postProps = {
 export const Card = ({posts}: postProps) => {
   return (
     <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post ) => <Link key={post._id} href={`/post/${post._id}`}><div className="py-6 px-4 border border-gray-600 rounded-lg">
+        {posts.map((post ) => <Link key={post._id} href={`/post/${post.slug}`}><div className="py-6 px-4 border border-gray-600 rounded-lg">
         <header className="flex font-light text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24" stroke="#b91c1c">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
