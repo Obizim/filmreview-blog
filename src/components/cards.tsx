@@ -17,12 +17,12 @@ const pt = {
       }
       return (
         <Image
-          alt={value.alt || "A randon work cover"}
+          alt={value.alt || "A random work cover"}
           loading="lazy"
           src={urlFor(value).auto("format").url()}
-          width={250}
-          height={400}
-          objectFit="cover"
+          width={450}
+          height={450}
+            style={{objectFit:"cover", maxHeight: "450px"}}
         />
       );
     },
@@ -54,10 +54,10 @@ export const Card = ({posts}: postProps) => {
           {post.title}
         </h2>
         <section className="leading-loose text-base py-8 font-light pt-4 line-clamp-2">
-            <PortableText value={post.body} components={pt} />
+            <PortableText value={post.body} components={pt}/>
         </section>
 
-        <div className='flex items-center justify-end pt-4'><FiCalendar /> <span>May 6 2021</span></div>
+        <div className='flex items-center space-x-2 pt-4'><FiCalendar /> <span>May 6 2021</span></div>
       </div></Link>)}
   
     </div>

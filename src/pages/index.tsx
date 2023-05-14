@@ -6,6 +6,7 @@ type postsProps = {
 }
 
 export default function Home({posts}: postsProps) {
+  let postArr = posts.slice(-6)
   return (
     <main className="mx-auto px-4 max-w-screen-lg">
       <div className="text-center pt-6">
@@ -14,7 +15,7 @@ export default function Home({posts}: postsProps) {
       </div>
       <div>
       <h2 className="font-semi-bold text-2xl pt-8 border-b border-gray-600 max-w-max">Recent Stories</h2>
-      <Card posts={posts} />
+      <Card posts={postArr} />
       </div>
     </main>
   )

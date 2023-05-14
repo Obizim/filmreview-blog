@@ -4,7 +4,7 @@ export const url = `{_id, title, publishedAt,
   "slug": slug.current, body, 
   "categories": categories[]->title,
    'mainImage': mainImage {
-      asset->{_id,url}
+      asset->{id,url}
     }}`
 
 export function fetch() {

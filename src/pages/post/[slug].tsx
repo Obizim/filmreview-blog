@@ -17,12 +17,12 @@ const pt = {
         }
         return (
           <Image
-            alt={value.alt || "A randon work cover"}
+            alt={value.alt || "A random work cover"}
             loading="lazy"
             src={urlFor(value).auto("format").url()}
-            width={250}
-            height={400}
-            objectFit="cover"
+            width={450}
+            height={450}
+            style={{objectFit:"cover", maxHeight: "450px"}}
           />
         );
       },
@@ -43,15 +43,18 @@ type postProps = {
 export default function Review({post}: postProps) {
     return <div className="mx-auto px-4 max-w-screen-lg">
         <header>
-        <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={450} height={350} objectFit="cover" />
+          <div className="relative pt-2 flex">
+            <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={880} height={150} style={{objectFit:"cover", maxHeight: "450px"}}
+ />
+          </div>
         <h2 className="font-bold text-3xl mt-4">{post[0].title}</h2>
             <div className="flex items-center py-6 space-x-4">
-            {post[0].categories.map((category, i) => <p key={i} className="bg-red-600 text-white p-1 rounded">{category}</p>)}
-            <div className='flex items-center'><FiCalendar /> <span>{post[0].publishedAt}</span></div>
+            {post[0].categories.map((category, i) => <p key={i} className="bg-red-600 text-white p-1 text-sm rounded">{category}</p>)}
+            <div className='flex items-center space-x-2'><FiCalendar /> <span>{new Date(post[0].publishedAt).toLocaleString('en-GB', {day:'numeric', month: 'long', year:'numeric'})}</span></div>
             </div>
         </header>
 
-        <section className="leading-loose text-base py-8">
+        <section className="leading-loose text-base pt-4 pb-8">
             <PortableText value={post[0].body} components={pt} />
         </section>
     </div>
