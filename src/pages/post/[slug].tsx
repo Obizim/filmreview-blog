@@ -21,10 +21,10 @@ type postProps = {
     }[]
   }
 export default function Review({post}: postProps) {
-    return <div className="mx-auto px-4 max-w-screen-lg">
+    return <article className="mx-auto px-4 max-w-screen-lg">
         <header>
           <div className="relative pt-2 flex">
-            <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={880} height={150} style={{objectFit:"cover", maxHeight: "450px"}}
+            <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={880} height={150} style={{objectFit:"cover", maxHeight: '450px', maxWidth: 'auto'}}
  />
           </div>
         <h2 className="font-bold text-3xl mt-4 capitalize">{post[0].title}</h2>
@@ -37,7 +37,7 @@ export default function Review({post}: postProps) {
         <section className="leading-relaxed text-base pt-4 pb-8">
           <Desc body={post[0].body}/>
         </section>
-    </div>
+    </article>
 }
 
 export const getStaticPaths = async () => {
