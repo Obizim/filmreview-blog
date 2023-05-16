@@ -27,7 +27,7 @@ export default function Review({ post }: postProps) {
       <Head>
         <title>Cinge Flicks</title>
       </Head>
-      {post.map((data) => (
+      {post && post.map((data) => (
         <>
           <header>
             <div key={data._id} className="relative pt-2 flex">
