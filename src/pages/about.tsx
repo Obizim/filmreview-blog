@@ -1,6 +1,11 @@
+import Head from "next/head"
+
 export default function About() {
   return (
     <section className="mx-auto px-4 max-w-screen-lg my-8 space-y-6">
+      <Head>
+        <title>Cinge Flicks - About</title>
+      </Head>
       <p>
         Welcome to our blog! Here, we dive into the fascinating world of movies,
         sharing our thoughts, opinions, and insights on the latest releases,

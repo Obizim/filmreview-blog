@@ -3,7 +3,8 @@ import client from "../../../client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { url } from "@/util/util";
-import { Desc } from "@/components/desc";
+import Desc from "@/components/desc";
+import Head from "next/head";
 
 function urlFor(source: any) {
     return imageUrlBuilder(client).image(source);
@@ -22,9 +23,12 @@ type postProps = {
   }
 export default function Review({post}: postProps) {
     return <article className="mx-auto px-4 max-w-screen-lg">
+      <Head>
+        <title>Cinge Flicks</title>
+      </Head>
         <header>
           <div className="relative pt-2 flex">
-            <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={880} height={150} style={{objectFit:"cover", maxHeight: '450px', maxWidth: 'auto'}}
+            <Image src={urlFor(post[0].mainImage).url()} alt={post[0].title} width={880} height={150} style={{objectFit:"cover", height:'450px', width: '100%'}}
  />
           </div>
         <h2 className="font-bold text-3xl mt-4 capitalize">{post[0].title}</h2>

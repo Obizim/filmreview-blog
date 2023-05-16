@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { FiCalendar } from 'react-icons/fi'
-import imageUrlBuilder from "@sanity/image-url";
-import client from '../../client';
-import { Desc } from './desc';
-
-function urlFor(source: any) {
-  return imageUrlBuilder(client).image(source);
-}
+import  Desc  from './desc';
 
 type postProps = {
   posts: {
@@ -41,7 +35,7 @@ export const Card = ({posts}: postProps) => {
             </div>
           </div>
           <div className='flex items-center space-x-2 pt-2'>
-            <FiCalendar /> <span>May 6 2021</span>
+            <FiCalendar /> <span>{new Date(post.publishedAt).toLocaleString('en-GB', {day:'numeric', month: 'long', year:'numeric'})}</span>
           </div>
       </Link>
     </li>

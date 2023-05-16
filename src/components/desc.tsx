@@ -2,6 +2,7 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import client from "../../client";
+import dynamic from "next/dynamic";
 
 function urlFor(source: any) {
     return imageUrlBuilder(client).image(source);
@@ -44,7 +45,7 @@ const pt: PortableTextComponents = {
         link: ({value, children}) => {
           const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
           return (
-            <a href={value?.href} className="text-blue-500 underline" target={target}>{children}</a>
+            <span><a href={value?.href} className="text-blue-500 underline" target={target}>{children}</a></span>
           )
         },
       },
@@ -54,6 +55,8 @@ const pt: PortableTextComponents = {
 type bodyProp = {
     body: []
 }
-export const Desc = ({body}: bodyProp) => {
+const Desc = ({body}: bodyProp) => {
     return <PortableText value={body} components={pt}/>
 }
+
+export default dynamic(() => Promise.resolve(Desc), {ssr: false})
