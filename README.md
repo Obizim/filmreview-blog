@@ -7,7 +7,7 @@ A mini blog site built with Nextjs and sanity.io for content management.
 * Tailwind CSS
 * Sanity.io CMS
 
-First, run the development server:
+First, run the development server (web folder):
 
 ```bash
 npm run dev
