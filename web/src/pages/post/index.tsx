@@ -24,10 +24,7 @@ export const getStaticProps = async () =>{
       }
     }else {
       return {
-        props: {
-          posts,
-          revalidate: 10 
-        }
+        props: {posts}, revalidate: 30 
       }
     }
   }

@@ -92,9 +92,6 @@ export const getStaticProps = async (context: any) => {
     `*[_type == "post" && slug.current == '${slug}']${url}`
   );
   return {
-    props: {
-      post,
-      revalidate: 10,
-    },
+    props: { post }, revalidate: 30
   };
 };
