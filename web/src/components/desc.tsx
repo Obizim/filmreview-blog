@@ -15,25 +15,26 @@ const pt: PortableTextComponents = {
           return null;
         }
         return (
-          <Image
-            alt={value.alt || "A random work cover"}
-            loading="lazy"
-            src={urlFor(value).auto("format").url()}
-            width={550}
-            height={450}
-            style={{objectFit:"cover"}}
-          />
+          <div className="container mx-auto max-w-screen-md relative my-4 w-full h-[450px]">
+            <Image
+              alt={value.alt || "Image Poster"}
+              loading="lazy"
+              src={urlFor(value).auto("format").url()}
+              fill
+              className="object-cover"
+            />
+          </div>
         );
       }
     },
       block: {
-        h1: ({children}) => <h1 className="text-4xl py-2">{children}</h1>,
-        h2: ({children}) => <h2 className="text-3xl py-2">{children}</h2>,
-        h3: ({children}) => <h3 className="text-2xl py-2">{children}</h3>,
-        h4: ({children}) => <h4 className="text-xl py-2">{children}</h4>,
-        h5: ({children}) => <h5 className="text-lg py-2">{children}</h5>,
+        h1: ({children}) => <h1 className="text-3xl py-2">{children}</h1>,
+        h2: ({children}) => <h2 className="text-2xl py-2">{children}</h2>,
+        h3: ({children}) => <h3 className="text-xl py-2">{children}</h3>,
+        h4: ({children}) => <h4 className="text-lg py-2">{children}</h4>,
+        h5: ({children}) => <h5 className="text-base py-2">{children}</h5>,
         h6: ({children}) => <h6 className="text-base py-2">{children}</h6>,
-        blockquote: ({children}) => <blockquote className="p-4 my-4 border-l-4 border-gray-600 bg-gray-200 rounded italic">{children}</blockquote>,
+        blockquote: ({children}) => <blockquote className="p-4 border-l-4 border-gray-600 bg-gray-100 rounded italic">{children}</blockquote>,
       },
       list: {
           number: ({children}) => <ol className="list-decimal mx-10">{children}</ol>,
@@ -44,8 +45,7 @@ const pt: PortableTextComponents = {
         em: ({children}) => <em>{children}</em>,
         link: ({value, children}) => {
           const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
-          return (
-            <span><a href={value?.href} className="text-blue-500 underline" target={target}>{children}</a></span>
+          return (<span><a href={value?.href} className="text-blue-500 underline" target={target}>{children}</a></span>
           )
         },
       },

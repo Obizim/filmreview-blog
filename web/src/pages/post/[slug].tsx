@@ -1,4 +1,5 @@
 import { FiCalendar } from "react-icons/fi";
+import React from 'react'
 import client from "../../../client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
@@ -19,24 +20,23 @@ type postProps = {
     categories: [];
     mainImage: string;
     publishedAt: string;
-  }[];
+  }[],
 };
 export default function Review({ post }: postProps) {
   return (
     <article className="mx-auto px-4 max-w-screen-lg">
       <Head>
-        <title>Cinge Flicks</title>
+        <title>Film Blog</title> 
       </Head>
       {post && post.map((data) => (
-        <>
+        <React.Fragment key={data._id}>
           <header>
-            <div key={data._id} className="relative pt-2 flex">
+            <div className="relative pt-2 flex w-full h-[465px]">
               <Image
                 src={urlFor(data.mainImage).url()}
                 alt={data.title}
-                width={880}
-                height={150}
-                style={{ objectFit: "cover", height: "450px", width: "100%" }}
+                fill
+                className="object-cover"
               />
             </div>
             <h2 className="font-bold text-3xl mt-4 capitalize">
@@ -46,8 +46,7 @@ export default function Review({ post }: postProps) {
               {data.categories.map((category, i) => (
                 <p
                   key={i}
-                  className="bg-red-600 text-white p-1 text-sm rounded"
-                >
+                  className="bg-blue-700 text-white text-sm p-2">
                   {category}
                 </p>
               ))}
@@ -67,7 +66,7 @@ export default function Review({ post }: postProps) {
           <section className="leading-relaxed text-base pt-4 pb-8">
             <Desc body={data.body} />
           </section>
-        </>
+        </React.Fragment>
       ))}
     </article>
   );

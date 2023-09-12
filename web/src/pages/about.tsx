@@ -1,11 +1,24 @@
 import Head from "next/head"
+import HeadImg from '../assets/head.jpeg'
+import Image from "next/image";
+import { FiInstagram, FiMail, FiTwitter } from "react-icons/fi";
 
 export default function About() {
   return (
     <section className="mx-auto px-4 max-w-screen-lg my-8 space-y-6">
       <Head>
-        <title>Cinge Flicks - About</title>
+        <title>Film Blog - About</title>
       </Head>
+      <section className="flex flex-col sm:flex-row justify-start sm:space-x-10">
+      <div className="relative w-[250px] h-[250px]">
+           <Image alt='Profile Photo' loading="lazy" src={HeadImg} fill className="object-cover rounded" />
+      </div>
+
+        <div className="space-y-2">
+          <h2 className="text-2xl mt-4">Samson Doe</h2>
+          <p className="text-gray-500">Chief Editor</p>
+        </div>
+      </section>
       <p>
         Welcome to our blog! Here, we dive into the fascinating world of movies,
         sharing our thoughts, opinions, and insights on the latest releases,
@@ -17,29 +30,17 @@ export default function About() {
         in-depth analyses to captivating interviews and behind-the-scenes
         glimpses, we strive to create a space where movie lovers can come
         together to discuss and celebrate the art of storytelling on the silver
-        screen. Join us as we embark on thrilling adventures through various
-        genres, exploring the realms of action, romance, comedy, drama, fantasy,
-        and more. We believe that every film has its own unique charm and
-        message, and we&lsquo;re here to unravel the cinematic wonders that captivate
-        and inspire us. Beyond just movie reviews, our blog serves as a platform
-        to delve into the broader cultural impact of films. We explore how
-        movies shape our society, influence popular culture, and reflect the
-        diverse perspectives of the world we live in. From analyzing the
-        symbolism behind iconic scenes to examining the social issues portrayed
-        on screen, we aim to spark meaningful conversations and encourage
-        critical thinking. But it&lsquo;s not all serious analysis and deep insights.
-        We also know how to have fun and embrace the joyous, entertaining side
-        of cinema. Expect plenty of witty banter, humorous observations, and
-        quirky takes on the movies we love. We believe that laughter and
-        entertainment go hand in hand with thoughtful reflection, creating a
-        well-rounded cinematic experience. So, whether you&lsquo;re seeking
-        recommendations for your next movie night, looking to expand your
-        cinematic horizons, or simply want to engage in lively discussions about
-        all things film-related, we invite you to join our community. Grab your
-        popcorn, find a comfy seat, and let&lsquo;s embark on this cinematic journey
-        together. Lights, camera, action - let the adventures in the world of
-        movies begin!
+        screen.
       </p>
+
+      <section>
+        <h2 className="text-xl">Contact</h2>
+        <ul className='flex flex-col space-y-2 pt-3'>
+                <li className="flex items-center space-x-2"><FiMail /> <span>obizimuzo@gmail.com</span></li>
+                <li className="flex items-center space-x-2"><FiTwitter /><span> Twitter</span></li>
+                <li className="flex items-center space-x-2"> <FiInstagram /><span> Instagram</span></li>
+            </ul>
+      </section>
     </section>
   );
 }
