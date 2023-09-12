@@ -3,7 +3,7 @@ import React from 'react'
 import client from "../../../client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
-import { url } from "@/util/util";
+import { postProps, url } from "@/util/util";
 import Desc from "@/components/desc";
 import Head from "next/head";
 
@@ -11,31 +11,22 @@ function urlFor(source: any) {
   return imageUrlBuilder(client).image(source);
 }
 
-type postProps = {
-  post: {
-    _id: string;
-    title: string;
-    slug: string;
-    body: [];
-    categories: [];
-    mainImage: string;
-    publishedAt: string;
-  }[],
-};
-export default function Review({ post }: postProps) {
+export default function Review({ posts }: postProps) {
   return (
     <article className="mx-auto px-4 max-w-screen-lg">
       <Head>
         <title>Film Blog</title> 
       </Head>
-      {post && post.map((data) => (
+      {posts && posts.map((data) => (
         <React.Fragment key={data._id}>
           <header>
-            <div className="relative pt-2 flex w-full h-[465px]">
+            <div className="relative pt-2 flex w-full h-[250px] sm:h-[465px]">
               <Image
                 src={urlFor(data.mainImage).url()}
                 alt={data.title}
-                fill
+                fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8f/NmPQAIQgMSKTWG2wAAAABJRU5ErkJggg=="
                 className="object-cover"
               />
             </div>
@@ -87,10 +78,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const { slug } = context.params;
-  const post = await client.fetch(
+  const posts = await client.fetch(
     `*[_type == "post" && slug.current == '${slug}']${url}`
   );
   return {
-    props: { post }, revalidate: 30
+    props: { posts }, revalidate: 30
   };
 };

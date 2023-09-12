@@ -2,17 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { FiCalendar } from 'react-icons/fi'
 import  Desc  from './desc';
-
-type postProps = {
-  posts: {
-    _id: string,
-    publishedAt: string,
-    title: string,
-    slug: string,
-    body: []
-    categories: string[]
-  }[]
-}
+import { postProps } from '@/util/util';
 
 export const Card = ({posts}: postProps) => {
   return (

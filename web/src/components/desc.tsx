@@ -15,12 +15,14 @@ const pt: PortableTextComponents = {
           return null;
         }
         return (
-          <div className="container mx-auto max-w-screen-md relative my-4 w-full h-[450px]">
+          <div className="container mx-auto max-w-screen-md relative my-4 w-full h-[200px] sm:h-[350px]">
             <Image
               alt={value.alt || "Image Poster"}
               loading="lazy"
               src={urlFor(value).auto("format").url()}
-              fill
+              fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8f/NmPQAIQgMSKTWG2wAAAABJRU5ErkJggg=="
               className="object-cover"
             />
           </div>

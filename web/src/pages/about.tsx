@@ -11,7 +11,9 @@ export default function About() {
       </Head>
       <section className="flex flex-col sm:flex-row justify-start sm:space-x-10">
       <div className="relative w-[250px] h-[250px]">
-           <Image alt='Profile Photo' loading="lazy" src={HeadImg} fill className="object-cover rounded" />
+           <Image alt='Profile Photo' loading="lazy" src={HeadImg} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8f/NmPQAIQgMSKTWG2wAAAABJRU5ErkJggg=="className="object-cover rounded" />
       </div>
 
         <div className="space-y-2">

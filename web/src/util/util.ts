@@ -14,3 +14,15 @@ export function fetch() {
 
   return posts;
 }
+
+export type postProps = {
+  posts: {
+    _id: string,
+    publishedAt: string,
+    title: string,
+    slug: string,
+    mainImage: string;
+    body: []
+    categories: string[]
+  }[]
+}

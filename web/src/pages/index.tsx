@@ -1,5 +1,6 @@
 import { Card } from "@/components/cards";
 import { fetch } from "@/util/util";
+import Link from "next/link";
 
 type postsProps = {
   posts: []
@@ -14,7 +15,10 @@ export default function Home({posts}: postsProps) {
         <p className="pt-2">A blog about movies, tv-shows and experiences.</p>
       </div>
       <div>
-      <h2 className="font-semi-bold text-2xl pt-8 border-b border-gray-600 max-w-max">Top Posts</h2>
+        <div className="flex items-center justify-between mt-8">
+            <h2 className="font-semi-bold text-2xl border-b border-gray-600 max-w-max">Top Posts</h2>
+            <Link href='/post'>View all posts</Link>
+        </div>
       <Card posts={postArr} />
       </div>
     </main>
